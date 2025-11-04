@@ -3,250 +3,100 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>URGENT: Oppose AB 606 – Email Builder</title>
+  <title>Oppose AB 606 – Email Builder</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    .shadow-soft{box-shadow:0 10px 25px rgba(0,0,0,.08)}
-    .card{border-radius:1rem}
-    textarea{tab-size:2}
+    body { background-color: #f8fafc; color: #1e293b; }
+    .card { border-radius: 1rem; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
+    .required::after { content: '*'; color: red; margin-left: 4px; }
   </style>
 </head>
-<body class="bg-slate-50 text-slate-800">
-  <div class="max-w-5xl mx-auto p-6">
-    <header class="mb-6">
-      <h1 class="text-2xl sm:text-3xl font-bold tracking-tight">🚨 URGENT: Oppose AB 606 – Email Builder</h1>
-      <p class="text-sm sm:text-base text-slate-600 mt-1">Public Hearing: <b>Today, November 4 at 11:30 AM</b>. Use this form to instantly open an email to the Assembly Committee on State Affairs with your details auto‑filled.</p>
+<body>
+  <div class="max-w-4xl mx-auto p-6">
+    <header class="mb-6 text-center">
+      <h1 class="text-3xl font-bold text-red-600">🚨 URGENT ACTION: Oppose Assembly Bill 606 (AB 606)</h1>
+      <p class="text-slate-600 mt-2">Public Hearing: Fill in your information and click below to open your email to the Assembly Committee.</p>
     </header>
 
-    <!-- Recipients -->
-    <section class="card bg-white p-5 shadow-soft mb-6">
-      <h2 class="text-lg font-semibold mb-3">Recipients (default: all selected)</h2>
-      <p class="text-sm text-slate-600 mb-4">You can uncheck anyone you don’t want included. The email opens in your mail app with these recipients in the <b>To</b> field.</p>
-      <div id="recipients" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
-    </section>
-
-    <!-- Your Info -->
-    <section class="card bg-white p-5 shadow-soft mb-6">
-      <h2 class="text-lg font-semibold mb-4">Your Information</h2>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <form id="emailForm" class="card bg-white p-6 mb-6" onsubmit="return openEmail(event)">
+      <h2 class="text-xl font-semibold mb-4">Your Information</h2>
+      <div class="space-y-4">
         <div>
-          <label class="block text-sm font-medium">First name</label>
-          <input id="firstName" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="Jane" />
+          <label for="fullName" class="block text-sm font-medium required">Full Name</label>
+          <input id="fullName" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-red-500 focus:ring-red-500 p-2" placeholder="John Doe" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Last name</label>
-          <input id="lastName" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="Doe" />
+          <label for="bizName" class="block text-sm font-medium required">Business Name</label>
+          <input id="bizName" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-red-500 focus:ring-red-500 p-2" placeholder="Your Store or Company" />
         </div>
         <div>
-          <label class="block text-sm font-medium">Email (for signature)</label>
-          <input id="email" type="email" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="you@example.com" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Phone (optional)</label>
-          <input id="phone" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="(555) 123-4567" />
-        </div>
-        <div class="sm:col-span-2">
-          <label class="block text-sm font-medium">Home address (helps show you’re a constituent)</label>
-          <input id="homeAddress" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="123 Main St, City, WI 53***" />
-          <p class="text-xs text-slate-500 mt-1">City and ZIP are most important.</p>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Business name (if any)</label>
-          <input id="bizName" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="Your LLC / Shop" />
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Business address (optional)</label>
-          <input id="bizAddress" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" placeholder="456 Commerce Ave, City, WI 53***" />
-        </div>
-      </div>
-    </section>
-
-    <!-- Draft Controls -->
-    <section class="card bg-white p-5 shadow-soft mb-6">
-      <div class="flex items-center justify-between gap-3 flex-wrap">
-        <h2 class="text-lg font-semibold">Message Draft</h2>
-        <div class="flex items-center gap-2 text-sm">
-          <label class="font-medium">Tone</label>
-          <select id="tone" class="rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2">
-            <option value="polite">Polite & firm</option>
-            <option value="direct">Direct & urgent</option>
-          </select>
+          <label for="bizAddress" class="block text-sm font-medium required">Business Address</label>
+          <input id="bizAddress" required class="mt-1 w-full rounded-xl border-slate-300 focus:border-red-500 focus:ring-red-500 p-2" placeholder="123 Main St, City, WI 53***" />
         </div>
       </div>
 
-      <p class="text-sm text-slate-600 mt-1">You can add a short personal story below. The email body preview updates live.</p>
-
-      <div class="mt-4 grid grid-cols-1 lg:grid-cols-3 gap-4">
-        <div class="lg:col-span-2">
-          <label class="block text-sm font-medium">Personal story / impact (optional)</label>
-          <textarea id="story" rows="6" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-3" placeholder="Example: My small business employs 6 people. AB 606 would force costly changes and jeopardize jobs in our community..."></textarea>
-          <div class="flex items-center gap-3 mt-3">
-            <button id="resetDraft" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200">Reset draft</button>
-            <button id="copyBody" class="px-4 py-2 rounded-xl bg-indigo-600 text-white hover:bg-indigo-700">Copy body</button>
-          </div>
-        </div>
-        <div>
-          <label class="block text-sm font-medium">Subject</label>
-          <input id="subject" class="mt-1 w-full rounded-xl border-slate-300 focus:border-indigo-500 focus:ring-indigo-500 p-2" />
-          <p class="text-xs text-slate-500 mt-1">You can edit this before opening your email app.</p>
-          <div class="mt-4">
-            <a id="mailtoLink" href="#" class="inline-flex items-center justify-center w-full px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700">Open Email in your Mail App</a>
-            <p class="text-xs text-slate-500 mt-2">If your mail app doesn’t open, click “Copy body” and paste it into an email addressed to the selected recipients.</p>
-          </div>
-        </div>
+      <div class="text-center mt-6">
+        <button type="submit" class="inline-block text-center px-6 py-3 rounded-xl bg-red-600 text-white font-semibold hover:bg-red-700 text-lg">📧 Open Pre-Filled Email</button>
       </div>
+    </form>
 
-      <div class="mt-6">
-        <label class="block text-sm font-medium mb-2">Email body preview</label>
-        <pre id="preview" class="whitespace-pre-wrap bg-slate-50 border border-slate-200 rounded-xl p-4 text-sm"></pre>
-      </div>
-    </section>
-
-    <footer class="text-xs text-slate-500">Built for rapid response on Nov 4. You control the message & recipients. No data is stored.</footer>
+    <footer class="text-xs text-center text-slate-500 mt-6">Built for rapid response. No information is stored.</footer>
   </div>
 
 <script>
-  // ===== Recipients list (default: all checked) =====
   const REPS = [
-    { name: "Rep. Rob Swearingen (Chair)", email: "Rep.Swearingen@legis.wisconsin.gov", phone: "(608) 266-7141" },
-    { name: "Rep. Scott Green (Vice-Chair)", email: "Rep.Green@legis.wisconsin.gov", phone: "(608) 237-9100" },
-    { name: "Rep. Rob Summerfield", email: "Rep.Summerfield@legis.wisconsin.gov", phone: "(608) 237-9168" },
-    { name: "Rep. Clint Moses", email: "Rep.Moses@legis.wisconsin.gov", phone: "(608) 237-9192" },
-    { name: "Rep. Robert Wittke", email: "Rep.Wittke@legis.wisconsin.gov", phone: "(608) 237-9163" },
-    { name: "Rep. John Spiros", email: "Rep.Spiros@legis.wisconsin.gov", phone: "(608) 266-1182" },
-    { name: "Rep. Jim Piwowarczyk", email: "Rep.Piwowarczyk@legis.wisconsin.gov", phone: "(608) 237-9198" },
-    { name: "Rep. Christine Sinicki", email: "Rep.Sinicki@legis.wisconsin.gov", phone: "(608) 237-9120" },
-    { name: "Rep. Karen Kirsch", email: "Rep.Kirsch@legis.wisconsin.gov", phone: "(608) 237-9107" },
-    { name: "Rep. Ann Roe", email: "Rep.Roe@legis.wisconsin.gov", phone: "(608) 237-9144" },
+    'Rep.Swearingen@legis.wisconsin.gov', 'Rep.Green@legis.wisconsin.gov', 'Rep.Summerfield@legis.wisconsin.gov',
+    'Rep.Moses@legis.wisconsin.gov', 'Rep.Wittke@legis.wisconsin.gov', 'Rep.Spiros@legis.wisconsin.gov',
+    'Rep.Piwowarczyk@legis.wisconsin.gov', 'Rep.Sinicki@legis.wisconsin.gov', 'Rep.Kirsch@legis.wisconsin.gov', 'Rep.Roe@legis.wisconsin.gov'
   ];
 
-  const recipientsDiv = document.getElementById('recipients');
-  REPS.forEach((r, idx) => {
-    const id = `rep_${idx}`;
-    const wrap = document.createElement('label');
-    wrap.className = "flex items-start gap-3 p-3 border rounded-xl hover:bg-slate-50";
-    wrap.innerHTML = `
-      <input type="checkbox" id="${id}" data-email="${r.email}" class="mt-1 h-4 w-4 text-indigo-600 border-slate-300 rounded" checked />
-      <div>
-        <div class="font-medium">${r.name}</div>
-        <div class="text-sm text-slate-600">${r.email}</div>
-        <div class="text-xs text-slate-500">${r.phone}</div>
-      </div>
-    `;
-    recipientsDiv.appendChild(wrap);
-  });
+  const subject = 'Please OPPOSE AB 606 – Hearing Today at 11:30 AM';
 
-  // ===== Helpers =====
-  function encodeMailtoBody(text){
-    // encodeURIComponent + normalize newlines to CRLF for best mail client support
-    return encodeURIComponent(text.replace(/\r?\n/g, "\r\n"));
-  }
-  function getSelectedEmails(){
-    return Array.from(recipientsDiv.querySelectorAll('input[type="checkbox"]:checked'))
-      .map(cb => cb.dataset.email);
-  }
+  function buildBody(name, biz, addr) {
+    return `Dear,
 
-  // ===== Draft builder =====
-  const firstName = document.getElementById('firstName');
-  const lastName = document.getElementById('lastName');
-  const email = document.getElementById('email');
-  const phone = document.getElementById('phone');
-  const homeAddress = document.getElementById('homeAddress');
-  const bizName = document.getElementById('bizName');
-  const bizAddress = document.getElementById('bizAddress');
-  const subjectEl = document.getElementById('subject');
-  const story = document.getElementById('story');
-  const tone = document.getElementById('tone');
-  const preview = document.getElementById('preview');
-  const mailtoLink = document.getElementById('mailtoLink');
-  const resetDraftBtn = document.getElementById('resetDraft');
-  const copyBodyBtn = document.getElementById('copyBody');
+My name is ${name}, and I am a Wisconsin small business owner. My business, ${biz}, is located at ${addr}. I am writing to you today to express my strong opposition to Assembly Bill 606 (AB 606).
 
-  const defaultSubject = "Please OPPOSE AB 606 – Hearing Today at 11:30 AM";
-  subjectEl.value = defaultSubject;
+I and my fellow business owners support common-sense regulation to protect consumers, including:
+• A strict 21+ purchasing age.
+• Mandatory independent lab testing (COAs) and product tracking.
+• Sensible dosage limits to protect the public.
 
-  function buildGreeting(){
-    return tone.value === 'direct'
-      ? 'Chair Swearingen and Members of the Assembly Committee on State Affairs,'
-      : 'Dear Chair Swearingen and Members of the Assembly Committee on State Affairs,';
+However, AB 606 is not a consumer safety bill; it is a bill designed to kill small businesses by forcing us into an unworkable and anti-competitive three-tier system, just like the alcohol industry.
+
+Here is what AB 606 will actually do:
+1. It Will Destroy Wisconsin Businesses & Jobs: This bill will make my business model illegal and shutter hundreds of small, vertically-integrated businesses like mine. This will result in the loss of thousands of jobs, from farmers and processors to retail employees.
+2. It Will Hurt Consumers: This bill merely adds a mandatory "middleman tax" to every transaction, driving up prices for consumers and hurting local manufacturers, all to profit a handful of distributors.
+
+This bill is not about safety; it is about a market takeover by the alcohol lobby.
+
+I urge you to stand with Wisconsin's small businesses and OPPOSE Assembly Bill 606.
+
+Thank you for your time.
+
+Sincerely,
+${name}
+${biz}
+${addr}
+`;
   }
 
-  function buildSignature(){
-    const lines = [];
-    const fullName = [firstName.value, lastName.value].filter(Boolean).join(' ');
-    if(fullName) lines.push(fullName);
-    if(homeAddress.value) lines.push(homeAddress.value);
-    if(bizName.value) lines.push(bizName.value);
-    if(bizAddress.value) lines.push(bizAddress.value);
-    if(email.value) lines.push(email.value);
-    if(phone.value) lines.push(phone.value);
-    return lines.join('\n');
-  }
+  function openEmail(event) {
+    event.preventDefault();
+    const name = document.getElementById('fullName').value.trim();
+    const biz = document.getElementById('bizName').value.trim();
+    const addr = document.getElementById('bizAddress').value.trim();
 
-  function buildBody(){
-    const greeting = buildGreeting();
-    const intro = `I am a Wisconsin ${bizName.value ? 'business owner and resident' : 'resident'} and I strongly OPPOSE Assembly Bill 606.`;
-    const urgency = 'This bill would force hemp into a three‑tier distribution model like alcohol, creating new costs, shutting out small operators, and harming Wisconsin jobs and consumers.';
-    const hearing = 'The public hearing for AB 606 is today at 11:30 AM. Please vote NO on AB 606 and keep Wisconsin’s hemp market open and competitive.';
-    const points = [
-      '• AB 606 imposes an alcohol‑style system that does not fit hemp and CBD/THC‑alternative products.',
-      '• It advantages large distributors while burdening small farms, processors, and retailers.',
-      '• It will limit product availability, raise prices for consumers, and risk pushing sales to unregulated channels.',
-      '• Current laws can be enforced without overhauling the entire supply chain.',
-    ].join('\n');
-
-    const storyTxt = story.value?.trim() ? `\nPersonal impact:\n${story.value.trim()}\n` : '';
-
-    const closing = 'Thank you for your time and service to Wisconsin. I respectfully urge you to vote NO on AB 606.';
-
-    return [
-      greeting,
-      '',
-      intro,
-      urgency,
-      '',
-      points,
-      '',
-      hearing,
-      storyTxt,
-      'Sincerely,',
-      buildSignature()
-    ].filter(Boolean).join('\n');
-  }
-
-  function update(){
-    const body = buildBody();
-    preview.textContent = body;
-
-    const to = getSelectedEmails().join(',');
-    const href = `mailto:${to}?subject=${encodeURIComponent(subjectEl.value)}&body=${encodeMailtoBody(body)}`;
-    mailtoLink.setAttribute('href', href);
-  }
-
-  // Bind updates
-  [firstName,lastName,email,phone,homeAddress,bizName,bizAddress,story,subjectEl,tone]
-    .forEach(el => el.addEventListener('input', update));
-  recipientsDiv.addEventListener('change', update);
-
-  resetDraftBtn.addEventListener('click', () => {
-    tone.value = 'polite';
-    story.value = '';
-    subjectEl.value = defaultSubject;
-    update();
-  });
-
-  copyBodyBtn.addEventListener('click', async () => {
-    try{
-      await navigator.clipboard.writeText(buildBody());
-      copyBodyBtn.textContent = 'Copied!';
-      setTimeout(()=> copyBodyBtn.textContent = 'Copy body', 1200);
-    }catch(e){
-      alert('Copy failed. Please select the preview text and copy manually.');
+    if (!name || !biz || !addr) {
+      alert('Please fill out all required fields before proceeding.');
+      return false;
     }
-  });
 
-  // Initial render
-  update();
+    const body = buildBody(name, biz, addr);
+    const mailtoLink = `mailto:${REPS.join(',')}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    window.location.href = mailtoLink;
+    return false;
+  }
 </script>
 </body>
 </html>
